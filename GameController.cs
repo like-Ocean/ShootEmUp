@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-
-
+using System.Collections.Generic;
 
 namespace ShootEmUp
 {
@@ -40,6 +39,7 @@ namespace ShootEmUp
                 }
             }
 
+            var bulletsToRemove = new List<Bullet>();
             foreach (var bullet in Player.Weapon.GetBullets())
             {
                 foreach (var enemy in EnemyManager.GetEnemies())
@@ -47,8 +47,14 @@ namespace ShootEmUp
                     if (new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, 10, 10).Intersects(enemy.Hitbox))
                     {
                         enemy.TakeDamage(bullet.Damage);
+                        bulletsToRemove.Add(bullet);
                     }
                 }
+            }
+
+            foreach (var bullet in bulletsToRemove)
+            {
+                Player.Weapon.GetBullets().Remove(bullet);
             }
         }
 

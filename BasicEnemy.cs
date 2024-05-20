@@ -17,8 +17,6 @@ namespace ShootEmUp
         {
             var direction = Vector2.Normalize(player.Position - Position);
             Position += direction * Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-
             // добавить проверку, на то, что в след клетке нет второго такгого же челикса
         }
     }   

@@ -63,7 +63,7 @@ public class Player
         Health -= damage;
         if (Health <= 0)
         {
-            // Обработка смерти игрока
+            
         }
     }
 }

@@ -40,7 +40,7 @@ namespace ShootEmUp
 
             _enemies.RemoveAll(e => e.Health <= 0);
 
-            if (_enemies.Count < 5)
+            if (_enemies.Count < 7)
             {
                 int respawn = Coordinate.Next(0, 1000);
                 var position = new Vector2(respawn, respawn);
