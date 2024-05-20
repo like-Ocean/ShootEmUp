@@ -64,6 +64,12 @@ namespace ShootEmUp
             // TODO: Add your update logic here
             _gameController.Update(gameTime);
 
+            if (_gameController.Player.Health <= 0)
+                _gameController = new GameController(_graphics);
+
+            _gameController.Player.Update(gameTime, _gameController.Camera.Position);
+
+
             base.Update(gameTime);
         }
 

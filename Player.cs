@@ -27,9 +27,10 @@ public class Player
         get { return new Rectangle((int)Position.X, (int)Position.Y, 40, 40); }
     }
 
-    public void Update(GameTime gameTime)
+    public void Update(GameTime gameTime, Vector2 cameraPosition)
     {
         var keyboardState = Keyboard.GetState();
+        var mouseState = Mouse.GetState();
 
         if (keyboardState.IsKeyDown(Keys.W))
             Position = new Vector2(Position.X, Position.Y - Speed * (float)gameTime.ElapsedGameTime.TotalSeconds);
@@ -42,6 +43,15 @@ public class Player
 
         if (keyboardState.IsKeyDown(Keys.D))
             Position = new Vector2(Position.X + Speed * (float)gameTime.ElapsedGameTime.TotalSeconds, Position.Y);
+
+        var mousePosition = mouseState.Position.ToVector2() - cameraPosition;
+        var direction = mousePosition - Position;
+        direction.Normalize();
+
+        if (mouseState.LeftButton == ButtonState.Pressed)
+        {
+            Weapon.Fire(gameTime, Position, direction);
+        }
 
         Weapon.UpdateBullets(gameTime);
         if (keyboardState.IsKeyDown(Keys.Space))

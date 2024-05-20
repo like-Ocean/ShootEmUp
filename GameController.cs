@@ -25,7 +25,7 @@ namespace ShootEmUp
 
         public void Update(GameTime gameTime)
         {
-            Player.Update(gameTime);
+            Player.Update(gameTime, Camera.Position);
             EnemyManager.Update(gameTime, Player);
 
             Camera.Follow(new Rectangle((int)Player.Position.X, (int)Player.Position.Y, 40, 40), 
@@ -47,7 +47,6 @@ namespace ShootEmUp
                     if (new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, 10, 10).Intersects(enemy.Hitbox))
                     {
                         enemy.TakeDamage(bullet.Damage);
-
                     }
                 }
             }

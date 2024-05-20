@@ -45,7 +45,7 @@ namespace ShootEmUp
                 int respawn = Coordinate.Next(0, 1000);
                 var position = new Vector2(respawn, respawn);
 
-                _enemies.Add(new BasicEnemy(position, 50, 50, 5));
+                _enemies.Add(new BasicEnemy(position, 50, 140, 5));
             }
         }
 
